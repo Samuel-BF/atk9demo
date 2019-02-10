@@ -23,7 +23,7 @@ class Employee extends Node
         parent::__construct($nodeUri, Node::NF_ADD_LINK);
         $this->setTable('lesson2_employee');
         $this->setDescriptorTemplate('[name]');
-        $this->setIndex('name');
+        //$this->setIndex('name');
         $this->setOrder('name');
 
         $this->add(new Attribute('id', Attribute::AF_AUTOKEY));

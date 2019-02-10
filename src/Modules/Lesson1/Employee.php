@@ -43,8 +43,9 @@ class Employee extends Node
         /**
          * The next line indicates that the "name" field can be used to generate
          * an alphabetical index in the admin screen.
+         * For now, this ATK functionality does not work.
          */
-        $this->setIndex('name');
+        //$this->setIndex('name');
     
         /**
          * The following line sets the default order for this node. The order
