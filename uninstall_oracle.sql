@@ -37,3 +37,8 @@ DROP SEQUENCE seq_lesson7_translation;
 DROP SEQUENCE seq_lesson7_translation_mr;
 DROP TABLE lesson8_employee;
 DROP SEQUENCE seq_lesson8_employee;
+DROP TABLE lesson9_employee;
+DROP TABLE lesson9_project;
+DROP TABLE lesson9_employeeproject;
+DROP SEQUENCE lesson9_employee;
+DROP SEQUENCE lesson9_project;

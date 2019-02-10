@@ -54,22 +54,22 @@ CREATE TABLE lesson2_employee
 (
   id NUMBER NOT NULL,
   name VARCHAR2(50) NOT NULL,
-  department_id NUMBER,
+  department NUMBER,
   hiredate DATE,
   notes CLOB,
   salary NUMBER(10,2),
-  manager_id NUMBER,
+  manager NUMBER,
   CONSTRAINT pk_lesson2_emp PRIMARY KEY (id),
-  CONSTRAINT fk_lesson2_empman FOREIGN KEY(manager_id) REFERENCES lesson2_employee(id) ON DELETE SET NULL,
-  CONSTRAINT fk_lesson2_empdept FOREIGN KEY(department_id) REFERENCES lesson2_department(id) ON DELETE SET NULL
+  CONSTRAINT fk_lesson2_empman FOREIGN KEY(manager) REFERENCES lesson2_employee(id) ON DELETE SET NULL,
+  CONSTRAINT fk_lesson2_empdept FOREIGN KEY(department) REFERENCES lesson2_department(id) ON DELETE SET NULL
 );
 
 --
 -- Demo data for table `lesson2_employee`
 --
 
-INSERT INTO lesson2_employee (id, name, department_id, hiredate, notes, salary, manager_id) VALUES (1, 'Jack', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), 'test', 1000.00, NULL);
-INSERT INTO lesson2_employee (id, name, department_id, hiredate, notes, salary, manager_id) VALUES (2, 'Joe', 2, TO_DATE('2004-05-03', 'YYYY-MM-DD'), 'test employee', 500.00, 1);
+INSERT INTO lesson2_employee (id, name, department, hiredate, notes, salary, manager) VALUES (1, 'Jack', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), 'test', 1000.00, NULL);
+INSERT INTO lesson2_employee (id, name, department, hiredate, notes, salary, manager) VALUES (2, 'Joe', 2, TO_DATE('2004-05-03', 'YYYY-MM-DD'), 'test employee', 500.00, 1);
 
 -- ATK will insert records based on a sequence.
 CREATE SEQUENCE seq_lesson2_employee START WITH 3;
@@ -103,23 +103,23 @@ CREATE TABLE lesson3_employee
 (
   id NUMBER NOT NULL,
   name VARCHAR2(50) NOT NULL,
-  department_id NUMBER,
+  department NUMBER,
   hiredate DATE,
   notes CLOB,
   salary NUMBER(10,2),
-  manager_id NUMBER,
+  manager NUMBER,
   CONSTRAINT pk_lesson3_emp PRIMARY KEY (id),
-  CONSTRAINT fk_lesson3_empman FOREIGN KEY(manager_id) REFERENCES lesson3_employee(id) ON DELETE SET NULL,
-  CONSTRAINT fk_lesson3_empdept FOREIGN KEY(department_id) REFERENCES lesson3_department(id) ON DELETE SET NULL
+  CONSTRAINT fk_lesson3_empman FOREIGN KEY(manager) REFERENCES lesson3_employee(id) ON DELETE SET NULL,
+  CONSTRAINT fk_lesson3_empdept FOREIGN KEY(department) REFERENCES lesson3_department(id) ON DELETE SET NULL
 );
 
 --
 -- Demo data for table `lesson3_employee`
 --
 
-INSERT INTO lesson3_employee (id, name, department_id, hiredate, notes, salary, manager_id) VALUES (1, 'Jack The Manager', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 1000.00, NULL);
-INSERT INTO lesson3_employee (id, name, department_id, hiredate, notes, salary, manager_id) VALUES (2, 'Joe The Employee', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 500.00, 1);
-INSERT INTO lesson3_employee (id, name, department_id, hiredate, notes, salary, manager_id) VALUES (3, 'Jill The Rich Employee', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 2000.00, 1);
+INSERT INTO lesson3_employee (id, name, department, hiredate, notes, salary, manager) VALUES (1, 'Jack The Manager', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 1000.00, NULL);
+INSERT INTO lesson3_employee (id, name, department, hiredate, notes, salary, manager) VALUES (2, 'Joe The Employee', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 500.00, 1);
+INSERT INTO lesson3_employee (id, name, department, hiredate, notes, salary, manager) VALUES (3, 'Jill The Rich Employee', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 2000.00, 1);
 
 -- ATK will insert records based on a sequence.
 CREATE SEQUENCE seq_lesson3_employee START WITH 4;
@@ -154,23 +154,23 @@ CREATE TABLE lesson4_employee
   id NUMBER NOT NULL,
   name VARCHAR2(50) NOT NULL,
   email VARCHAR2(100),
-  department_id NUMBER,
+  department NUMBER,
   hiredate DATE,
   notes CLOB,
   salary NUMBER(10,2),
-  manager_id NUMBER,
+  manager NUMBER,
   CONSTRAINT pk_lesson4_emp PRIMARY KEY (id),
-  CONSTRAINT fk_lesson4_empman FOREIGN KEY(manager_id) REFERENCES lesson4_employee(id) ON DELETE SET NULL,
-  CONSTRAINT fk_lesson4_empdept FOREIGN KEY(department_id) REFERENCES lesson4_department(id) ON DELETE SET NULL
+  CONSTRAINT fk_lesson4_empman FOREIGN KEY(manager) REFERENCES lesson4_employee(id) ON DELETE SET NULL,
+  CONSTRAINT fk_lesson4_empdept FOREIGN KEY(department) REFERENCES lesson4_department(id) ON DELETE SET NULL
 );
 
 --
 -- Demo data for table `lesson4_employee`
 --
 
-INSERT INTO lesson4_employee (id, name, email, department_id, hiredate, notes, salary, manager_id) VALUES (1, 'Jack The Manager', NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 1000.00, NULL);
-INSERT INTO lesson4_employee (id, name, email, department_id, hiredate, notes, salary, manager_id) VALUES (2, 'Joe The Employee', NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 500.00, 1);
-INSERT INTO lesson4_employee (id, name, email, department_id, hiredate, notes, salary, manager_id) VALUES (3, 'Jill The Rich Employee', '', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 2100.00, 1);
+INSERT INTO lesson4_employee (id, name, email, department, hiredate, notes, salary, manager) VALUES (1, 'Jack The Manager', NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 1000.00, NULL);
+INSERT INTO lesson4_employee (id, name, email, department, hiredate, notes, salary, manager) VALUES (2, 'Joe The Employee', NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 500.00, 1);
+INSERT INTO lesson4_employee (id, name, email, department, hiredate, notes, salary, manager) VALUES (3, 'Jill The Rich Employee', '', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 2100.00, 1);
 
 -- ATK will insert records based on a sequence.
 CREATE SEQUENCE seq_lesson4_employee START WITH 4;
@@ -249,17 +249,17 @@ CREATE TABLE lesson5_employee
   id NUMBER NOT NULL,
   login VARCHAR2(25) NOT NULL,
   name VARCHAR2(50) NOT NULL,
-  password VARCHAR2(50),
+  password VARCHAR2(255),
   email VARCHAR2(100),
-  department_id NUMBER,
+  department NUMBER,
   hiredate DATE,
   notes CLOB,
   salary NUMBER(10,2),
-  manager_id NUMBER,
+  manager NUMBER,
   profile_id NUMBER,
   CONSTRAINT pk_lesson5_emp PRIMARY KEY (id),
-  CONSTRAINT fk_lesson5_empman FOREIGN KEY(manager_id) REFERENCES lesson5_employee(id) ON DELETE SET NULL,
-  CONSTRAINT fk_lesson5_empdept FOREIGN KEY(department_id) REFERENCES lesson5_department(id) ON DELETE SET NULL,
+  CONSTRAINT fk_lesson5_empman FOREIGN KEY(manager) REFERENCES lesson5_employee(id) ON DELETE SET NULL,
+  CONSTRAINT fk_lesson5_empdept FOREIGN KEY(department) REFERENCES lesson5_department(id) ON DELETE SET NULL,
   CONSTRAINT fk_lesson2_empprofile FOREIGN KEY(profile_id) REFERENCES lesson5_profile(id) ON DELETE SET NULL
 );
 
@@ -267,9 +267,9 @@ CREATE TABLE lesson5_employee
 -- Demo data for table `lesson5_employee`
 --
 
-INSERT INTO lesson5_employee (id, login, name, password, email, department_id, hiredate, notes, salary, manager_id, profile_id) VALUES (1, 'jack', 'Jack The Manager', '098f6bcd4621d373cade4e832627b4f6', '', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 1000.00, NULL, 1);
-INSERT INTO lesson5_employee (id, login, name, password, email, department_id, hiredate, notes, salary, manager_id, profile_id) VALUES (2, 'joe', 'Joe The Employee', NULL, NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 500.00, 1, NULL);
-INSERT INTO lesson5_employee (id, login, name, password, email, department_id, hiredate, notes, salary, manager_id, profile_id) VALUES (3, 'jill', 'Jill The Rich Employee', NULL, NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 2000.00, 1, NULL);
+INSERT INTO lesson5_employee (id, login, name, password, email, department, hiredate, notes, salary, manager, profile_id) VALUES (1, 'jack', 'Jack The Manager', '098f6bcd4621d373cade4e832627b4f6', '', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 1000.00, NULL, 1);
+INSERT INTO lesson5_employee (id, login, name, password, email, department, hiredate, notes, salary, manager, profile_id) VALUES (2, 'joe', 'Joe The Employee', NULL, NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 500.00, 1, NULL);
+INSERT INTO lesson5_employee (id, login, name, password, email, department, hiredate, notes, salary, manager, profile_id) VALUES (3, 'jill', 'Jill The Rich Employee', NULL, NULL, 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 2000.00, 1, NULL);
 
 -- ATK will insert records based on a sequence.
 CREATE SEQUENCE seq_lesson5_department START WITH 3;
@@ -332,21 +332,21 @@ CREATE TABLE lesson6_employee2
 (
   id NUMBER NOT NULL,
   name VARCHAR2(50) NOT NULL,
-  lesson6_department_id NUMBER,
+  lesson6_department NUMBER,
   hiredate DATE,
   notes CLOB,
   salary NUMBER(10,2),
   CONSTRAINT pk_lesson6_emp2 PRIMARY KEY (id),
-  CONSTRAINT fk_lesson6_emp2dept FOREIGN KEY(lesson6_department_id) REFERENCES lesson6_department(id) ON DELETE SET NULL
+  CONSTRAINT fk_lesson6_emp2dept FOREIGN KEY(lesson6_department) REFERENCES lesson6_department(id) ON DELETE SET NULL
 );
 
 --
 -- Demo data for table `lesson6_employee2`
 --
 
-INSERT INTO lesson6_employee2 (id, name, hiredate, notes, salary, lesson6_department_id) VALUES (1, 'Jack', TO_DATE('2004-04-27', 'YYYY-MM-DD'), '', 1000.00,1);
-INSERT INTO lesson6_employee2 (id, name, hiredate, notes, salary, lesson6_department_id) VALUES (2, 'Bill', TO_DATE('2000-06-01', 'YYYY-MM-DD'), 'Test employee', 60.00,2);
-INSERT INTO lesson6_employee2 (id, name, hiredate, notes, salary, lesson6_department_id) VALUES (3, 'Simon', TO_DATE('2004-02-09', 'YYYY-MM-DD'), 'Simon the Sourceror', 500.00,1);
+INSERT INTO lesson6_employee2 (id, name, hiredate, notes, salary, lesson6_department) VALUES (1, 'Jack', TO_DATE('2004-04-27', 'YYYY-MM-DD'), '', 1000.00,1);
+INSERT INTO lesson6_employee2 (id, name, hiredate, notes, salary, lesson6_department) VALUES (2, 'Bill', TO_DATE('2000-06-01', 'YYYY-MM-DD'), 'Test employee', 60.00,2);
+INSERT INTO lesson6_employee2 (id, name, hiredate, notes, salary, lesson6_department) VALUES (3, 'Simon', TO_DATE('2004-02-09', 'YYYY-MM-DD'), 'Simon the Sourceror', 500.00,1);
 
 -- ATK will insert records based on a sequence.
 CREATE SEQUENCE seq_lesson6_employee2 START WITH 4;
@@ -386,21 +386,21 @@ CREATE TABLE lesson6_employee4
 (
   id NUMBER NOT NULL,
   name VARCHAR2(50) NOT NULL,
-  lesson6_department_id NUMBER,
+  lesson6_department NUMBER,
   hiredate DATE,
   notes CLOB,
   salary NUMBER(10,2),
   CONSTRAINT pk_lesson6_emp4 PRIMARY KEY (id),
-  CONSTRAINT fk_lesson6_emp4dept FOREIGN KEY(lesson6_department_id) REFERENCES lesson6_department(id) ON DELETE SET NULL
+  CONSTRAINT fk_lesson6_emp4dept FOREIGN KEY(lesson6_department) REFERENCES lesson6_department(id) ON DELETE SET NULL
 );
 
 --
 -- Demo data for table `lesson6_employee4`
 --
 
-INSERT INTO lesson6_employee4 (id, name, hiredate, notes, salary, lesson6_department_id) VALUES (1, 'Jack', TO_DATE('2004-04-27', 'YYYY-MM-DD'), '', 1000.00,1);
-INSERT INTO lesson6_employee4 (id, name, hiredate, notes, salary, lesson6_department_id) VALUES (2, 'Bill', TO_DATE('2000-06-01', 'YYYY-MM-DD'), 'Test employee', 60.00,2);
-INSERT INTO lesson6_employee4 (id, name, hiredate, notes, salary, lesson6_department_id) VALUES (3, 'Simon', TO_DATE('2004-02-09', 'YYYY-MM-DD'), 'Simon the Sourceror', 500.00,1);
+INSERT INTO lesson6_employee4 (id, name, hiredate, notes, salary, lesson6_department) VALUES (1, 'Jack', TO_DATE('2004-04-27', 'YYYY-MM-DD'), '', 1000.00,1);
+INSERT INTO lesson6_employee4 (id, name, hiredate, notes, salary, lesson6_department) VALUES (2, 'Bill', TO_DATE('2000-06-01', 'YYYY-MM-DD'), 'Test employee', 60.00,2);
+INSERT INTO lesson6_employee4 (id, name, hiredate, notes, salary, lesson6_department) VALUES (3, 'Simon', TO_DATE('2004-02-09', 'YYYY-MM-DD'), 'Simon the Sourceror', 500.00,1);
 
 -- ATK will insert records based on a sequence.
 CREATE SEQUENCE seq_lesson6_employee4 START WITH 4;

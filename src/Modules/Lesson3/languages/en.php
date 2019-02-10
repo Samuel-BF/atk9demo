@@ -1,0 +1,15 @@
+<?php
+
+return [
+  "employee" =>  "Employee",
+  "department" => "Department",
+  "menu_lesson3" => "3 - Gui",
+  "menu_employees" => "Employees",
+  "menu_departments" => "Departments",
+  "menu_modulesource" => "Module source",
+  "department_id" => "Department",
+  "manager_id" => "Manager",
+  "tab_default" => "General",
+  "tab_staff" => "Department Staff",
+  "section_contractinfo" => "Contract information",
+];

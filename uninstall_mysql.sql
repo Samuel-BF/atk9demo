@@ -18,4 +18,6 @@ DROP TABLE lesson7_category;
 DROP TABLE lesson7_translation;
 DROP TABLE lesson7_translation_mr;
 DROP TABLE lesson8_employee;
-DROP TABLE db_sequence;
+DROP TABLE lesson9_employee;
+DROP TABLE lesson9_project;
+DROP TABLE lesson9_employeeproject;
