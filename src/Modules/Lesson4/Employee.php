@@ -37,8 +37,8 @@ class Employee extends Node
         $this->add(new Attribute('id', Attribute::AF_AUTOKEY));
         $this->add(new Attribute('name', Attribute::AF_SEARCHABLE|Attribute::AF_UNIQUE));
         $this->add(new CurrencyAttribute('salary', Attribute::AF_TOTAL, '€'));
-        $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson4.department'));
-        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE, 'Lesson4.employee'));
+        $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE, 'Lesson4.department'));
+        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson4.employee'));
 
         /**
          * In the next line, we learn a couple of things. First, we manually add 

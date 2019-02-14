@@ -81,8 +81,8 @@ class Employee extends Node
         
         $this->add(new DummyAttribute('comment', Attribute::AF_HIDE_LIST, "The demo will send mail to the address below!"));
         $this->add(new EmailAttribute('email'));
-        $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson5.department'));
-        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE, 'Lesson5.employee'));
+        $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE, 'Lesson5.department'));
+        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson5.employee'));
         $this->add(new DateAttribute('hiredate'), 'default.contractinfo');
         $this->add(new CurrencyAttribute('salary', Attribute::AF_TOTAL, '€'), 'default.contractinfo');
         $this->add(new TextAttribute("notes", AF_HIDE_LIST));

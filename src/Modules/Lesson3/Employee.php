@@ -52,6 +52,8 @@ class Employee extends Node
          */
         $this->add(new CurrencyAttribute('salary', Attribute::AF_TOTAL, '€'));
         
+        $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE, 'Lesson3.department'));
+
         /**
          * Another cool feature we're introducing is autocompletion. By adding
          * the AF_RELATION_AUTOCOMPLETE flag to the relationship for the manager,
@@ -59,11 +61,8 @@ class Employee extends Node
          * can enter a couple of characters and the system automatically 
          * looks them up.
          */
-        $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson3.department'));
-        
-        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE, 'Lesson3.employee'));
-        
-        
+        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson3.employee'));
+
         /**
          * In the department node of lesson 3, we saw the use of tabs to 
          * distribute fields. In this node we'll introduce sections.
