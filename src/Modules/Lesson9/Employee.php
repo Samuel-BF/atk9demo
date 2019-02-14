@@ -8,11 +8,11 @@ namespace App\Modules\Lesson9;
  * This means that, like in the database, the relation is represented
  * by an intermediary node. This intermediary node has 2 manytoone
  * relations with the nodes on both sides of the manytomany relation.
- * 
- * See the file EmployeeProject.php for the node that links 
+ *
+ * See the file EmployeeProject.php for the node that links
  * many projects to many employees.
- * 
- * For simplicity, we're using the employee class from lesson 1 as 
+ *
+ * For simplicity, we're using the employee class from lesson 1 as
  * the basis.
  */
 use Sintattica\Atk\Core\Node;
@@ -22,7 +22,7 @@ use function App\Modules\Lesson_utils\nodeSourceUrl;
 
 class Employee extends Node
 {
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         parent::__construct($nodeUri, Node::NF_ADD_LINK);
         $this->setTable('lesson9_employee');
@@ -36,14 +36,19 @@ class Employee extends Node
 
         /**
          * The following code is where we add the manytomany relation.
-         * The third parameter tells ATK what intermediary node to use 
-         * (normalization). 
+         * The third parameter tells ATK what intermediary node to use
+         * (normalization).
          * In this case, we use a shuttle relationship. In the project
          * node we'll demonstrate a different type of relationship.
          * Available types are: shuttle, extendedshuttle, select, bool,
          * list.
          */
-         $this->add(new ShuttleRelation('projects', Attribute::AF_SEARCHABLE | ShuttleRelation::AF_MANYTOMANY_DETAILVIEW, 'Lesson9.employeeproject', 'Lesson9.project'));
+        $this->add(new ShuttleRelation(
+            'projects',
+            Attribute::AF_SEARCHABLE | ShuttleRelation::AF_MANYTOMANY_DETAILVIEW,
+            'Lesson9.employeeproject',
+            'Lesson9.project'
+        ));
     }
 
     public function adminFooter()
@@ -51,4 +56,3 @@ class Employee extends Node
         return nodeSourceUrl("Lesson9.Employee") . ' / EmployeeProject : ' . nodeSourceUrl("Lesson9.EmployeeProject");
     }
 }
-

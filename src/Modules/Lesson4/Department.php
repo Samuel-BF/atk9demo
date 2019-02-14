@@ -8,14 +8,15 @@ use Sintattica\Atk\Attributes\TabbedPane;
 use Sintattica\Atk\Core\Node;
 use Sintattica\Atk\Relations\OneToManyRelation;
 use function App\Modules\Lesson_utils\nodeSourceUrl;
+
 /**
  * This node is equal to the department node of lesson 3.
  */
 
-class department extends Node
+class Department extends Node
 {
-
-    function __construct($nodeUri) {
+    public function __construct($nodeUri)
+    {
         parent::__construct($nodeUri, Node::NF_ADD_LINK);
         $this->setTable('lesson4_department');
         $this->setDescriptorTemplate('[name]');
@@ -27,18 +28,21 @@ class department extends Node
         $this->add(new BoolAttribute('is_hiring'), 'staff');
         
         $this->getAttribute('is_hiring')->addDependency(
-            function ($editform) { $editform->refreshAttribute('employees'); });
+            function ($editform) {
+                $editform->refreshAttribute('employees');
+            }
+        );
     }
 
     public function adminFooter()
     {
-      return nodeSourceUrl('Lesson4.Department');
+        return nodeSourceUrl('Lesson4.Department');
     }
    
-    public function name_display($record)
+    public function name_display($record, $mode)
     {
         $nameAttribute = $this->getAttribute('name');
-        $displayString = $nameAttribute->display($record);
+        $displayString = $nameAttribute->display($record, $mode);
 
         if ($record['is_hiring']) {
             $displayString = "<b>{$displayString}</b>";

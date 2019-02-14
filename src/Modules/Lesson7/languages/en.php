@@ -4,4 +4,3 @@ return [
   "menu_modulesource" => "Module source",
   "menu_category" => "Category",
 ];
-?>

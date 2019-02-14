@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Modules\Lesson2;
 
 use Sintattica\Atk\Core\Node;
@@ -18,7 +17,7 @@ use function App\Modules\Lesson_utils\nodeSourceUrl;
  
 class Employee extends Node
 {
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         parent::__construct($nodeUri, Node::NF_ADD_LINK);
         $this->setTable('lesson2_employee');
@@ -45,13 +44,13 @@ class Employee extends Node
         /**
          * The second manytoone we add is a recursive parent/child relationship.
          * Employees have a manager. Ofcourse, a manager is an employee too.
-         * 
-         * In this case, we have to help ATK a bit. The department relationship 
-         * automagically works, because ATK finds a department field in the 
-         * database it can work with. There is however no employee_id field. 
+         *
+         * In this case, we have to help ATK a bit. The department relationship
+         * automagically works, because ATK finds a department field in the
+         * database it can work with. There is however no employee_id field.
          * The database has a manager_id, so we have to tell ATK to use that
          * for the relationship, using the source parameter.
-         * 
+         *
          */
          $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE, 'Lesson2.employee'));
     }
@@ -61,4 +60,3 @@ class Employee extends Node
         return nodeSourceUrl("Lesson2.Employee");
     }
 }
-

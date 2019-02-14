@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Modules\Lesson4;
 
 use Sintattica\Atk\Core\Node;
@@ -21,7 +20,7 @@ use function App\Modules\Lesson_utils\nodeSourceUrl;
  
 class Employee extends Node
 {
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         /**
          * There's one new flag in the next line of code. The NF_TRACK_CHANGES
@@ -38,19 +37,27 @@ class Employee extends Node
         $this->add(new Attribute('name', Attribute::AF_SEARCHABLE|Attribute::AF_UNIQUE));
         $this->add(new CurrencyAttribute('salary', Attribute::AF_TOTAL, '€'));
         $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE, 'Lesson4.department'));
-        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson4.employee'));
+        $this->add(new ManyToOneRelation(
+            'manager',
+            Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE,
+            'Lesson4.employee'
+        ));
 
         /**
-         * In the next line, we learn a couple of things. First, we manually add 
-         * a new attribute. In this case an atkDummyAttribute, which is a field 
+         * In the next line, we learn a couple of things. First, we manually add
+         * a new attribute. In this case an atkDummyAttribute, which is a field
          * that is not retrieved from the database; it's typically used to add
-         * comments to fields.With the AF_HIDE_LIST, the attribute is hidden 
+         * comments to fields.With the AF_HIDE_LIST, the attribute is hidden
          * from the recordlist, and only displayed in add/edit/view screens.
-         * Like the hasOne and get methods, add returns a fluid interface to 
+         * Like the hasOne and get methods, add returns a fluid interface to
          * a utility class that we can use to call 'insertBefore' to make sure
          * this new field displays at a particular place in the screens.
          */
-        $this->add(new DummyAttribute('comment', Attribute::AF_HIDE_LIST, "The demo will send mail to the address below!"));
+        $this->add(new DummyAttribute(
+            'comment',
+            Attribute::AF_HIDE_LIST,
+            "The demo will send mail to the address below!"
+        ));
         $this->add(new EmailAttribute('email'));
 
         $this->add(new DateAttribute('hiredate'), 'default.contractinfo');
@@ -59,21 +66,22 @@ class Employee extends Node
 
     public function adminFooter()
     {
-      return nodeSourceUrl("Lesson4.Employee");
+        return nodeSourceUrl("Lesson4.Employee");
     }
 
     public function rowColor($record)
     {
         $manager_id = $record['manager']['id'];
         if ($manager_id!="") {
-
             $salary = $record['salary'];
 
             $managerNode = $this->getAttribute('manager')->getDestination();
             $managerRecord = $managerNode->select("id=$manager_id")->includes('salary')->getFirstRow();
             $managerSalary = $managerRecord['salary'];
 
-            if ($salary > $managerSalary) return '#ff0000';
+            if ($salary > $managerSalary) {
+                return '#ff0000';
+            }
         }
     }
 
@@ -88,7 +96,7 @@ class Employee extends Node
         /**
          * First we check if an emailaddress was entered.
          */
-        if($record["email"]!='') {
+        if ($record["email"]!='') {
             
             /**
              * If so, we sent a welcome message. In the welcome message, we
@@ -103,7 +111,7 @@ class Employee extends Node
              * (for this to work, make sure emailsettings in your php.ini are
              * set correctly).
              */
-            mail($record["email"],"Welcome",$body);
+            mail($record["email"], "Welcome", $body);
         }
 
         /**
@@ -134,8 +142,7 @@ class Employee extends Node
          * If the salary was modified, and we know the employees' email,
          * we send a mail with the salary modification.
          */
-        if($record["email"]!='' && $newSalary!=$oldSalary) {
-
+        if ($record["email"]!='' && $newSalary!=$oldSalary) {
             $body = "Hi {$record["name"]},\n\n".
                 "We ".($oldSalary>$newSalary?"lowered":"raised")." your salary with ".abs($newSalary-$oldSalary).".\n".
                 "So your current salary is now: {$record["salary"]}\n";
@@ -143,7 +150,7 @@ class Employee extends Node
             /**
              * Again, we use the php mail() method to mail the message.
              */
-            mail($record["email"],"Salary changed",$body);
+            mail($record["email"], "Salary changed", $body);
         }
         return true;
     }
@@ -155,16 +162,10 @@ class Employee extends Node
      */
     public function postDelete($record)
     {
-        if($record["email"]!='') {
-
+        if ($record["email"]!='') {
             $body = "Hi {$record["name"]}\n\nThanks for working at the company!";
-            mail($record["email"],"Goodbye",$body);
+            mail($record["email"], "Goodbye", $body);
         }
         return true;
     }
-    
 }
-
-  
-   
-  

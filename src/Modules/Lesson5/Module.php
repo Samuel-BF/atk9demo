@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Modules\Lesson5;
+
 use function App\Modules\Lesson_utils\moduleSourceUrl;
 
 /**
@@ -11,7 +11,7 @@ use function App\Modules\Lesson_utils\moduleSourceUrl;
  */
 class Module extends \Sintattica\Atk\Core\Module
 {
-    static $module = 'Lesson5';
+    public static $module = 'Lesson5';
     
     public function boot()
     {
@@ -19,10 +19,10 @@ class Module extends \Sintattica\Atk\Core\Module
 
         $this->addNodeToMenu('departments', 'department', 'admin', 'lesson5');
         
-        /** 
+        /**
          * The following line adds the new profiles menu item.
          * New here is the 5th parameter to the addNodeToMenu() call. This parameter
-         * makes the menuitem disappear, if the current user does not have the 
+         * makes the menuitem disappear, if the current user does not have the
          * 'admin' privilege on the profile node.
          * If you don't pass this parameter, the menu item is always visible, and
          * the user will get an 'access denied' message when clicking the item
@@ -47,18 +47,17 @@ class Module extends \Sintattica\Atk\Core\Module
     public function register()
     {
         $this->registerNode("department", Department::class, ["admin", "add", "edit", "delete"]);
-        /** 
-         * If a user has the grantall privilege, he can grant other users all 
+        /**
+         * If a user has the grantall privilege, he can grant other users all
          * privileges; even privileges he does not have himself. Without this
          * privilege, users can only grant rights to other users that they have
          * themselves.
          *
-         * The auth_grantall_privilege configuration value have to be set in 
+         * The auth_grantall_privilege configuration value have to be set in
          * config/atk.php in order for this to work :
          * 'auth_grantall_privilege' => 'Lesson5.profile.grantall',
          */
         $this->registerNode("profile", Profile::Class, ["admin", "add", "edit", "delete", "grantall"]);
         $this->registerNode("employee", Employee::class, ["admin", "add", "edit", "delete"]);
-        
     }
 }

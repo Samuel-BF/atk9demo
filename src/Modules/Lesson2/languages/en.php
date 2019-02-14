@@ -9,4 +9,3 @@ return [
   "department" => "Department",
   "manager" => "Manager"
 ];
-?>

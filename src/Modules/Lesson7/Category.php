@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Modules\Lesson7;
 
 use Sintattica\Atk\Attributes\Attribute;
@@ -30,14 +29,17 @@ use Sintattica\Atk\Relations\ManyToOneTreeRelation;
 
 class Category extends TreeNode
 {
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         /**
          * The NF_TREE_* flags are specifically designed to tweak behaviour of
          * the tree. NF_TREE_NO_ROOT_COPY establishes that root items can not be
          * copied. NF_TREE_NO_ROOT_DELETE disables deletion of tree root items.
          */
-        parent::__construct($nodeUri, TreeNode::NF_COPY|TreeNode::NF_TREE_NO_ROOT_COPY|TreeNode::NF_TREE_NO_ROOT_DELETE|TreeNode::NF_ADD_LINK);
+        parent::__construct(
+            $nodeUri,
+            TreeNode::NF_COPY|TreeNode::NF_TREE_NO_ROOT_COPY|TreeNode::NF_TREE_NO_ROOT_DELETE|TreeNode::NF_ADD_LINK
+        );
         $this->setTable('lesson7_category');
         $this->setDescriptorTemplate('[title]');
         
@@ -46,7 +48,7 @@ class Category extends TreeNode
         $this->add(new ManyToOneTreeRelation('parent_cat_id', Attribute::AF_PARENT, 'Lesson7.category', 'cat_id'));
     }
 
-    function adminFooter()
+    public function adminFooter()
     {
         return nodeSourceUrl("Lesson7.Category");
     }

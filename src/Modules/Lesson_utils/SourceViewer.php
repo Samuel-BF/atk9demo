@@ -8,22 +8,27 @@ use Sintattica\Atk\Session\SessionManager;
 
 class SourceViewer extends Node
 {
-    function __construct($nodeUri){
+    function __construct($nodeUri)
+    {
         parent::__construct($nodeUri);
     }
 
-    function getSourceFileName($module, $node){
+    function getSourceFileName($module, $node)
+    {
         $atk = Atk::getInstance();
-        if ($node=="")
+        if ($node=="") {
             $filename = $atk->moduleDir($module)."Module.php";
-        else
+        } else {
             $filename = $atk->moduleDir($module).$node.".php";
+        }
 
-        if (strpos($filename, "./") === 0)
+        if (strpos($filename, "./") === 0) {
             $filename = substr($filename, 2);
+        }
 
-        if ((strpos($filename, "..")!==false) || (!file_exists($filename)))
+        if ((strpos($filename, "..")!==false) || (!file_exists($filename))) {
             return false;
+        }
 
         return $filename;
     }
@@ -40,22 +45,26 @@ class SourceViewer extends Node
         }
 
         $sessionmanager = SessionManager::getInstance();
-        if ($sessionmanager->atkLevel()>0)
+        if ($sessionmanager->atkLevel()>0) {
             $content.= '<br><br>'.atkButton("&lt;&lt; " . $this->text("back"), "", SESSION_BACK, false);
+        }
 
         return $content;
     }
 
-    function getTitle($module, $node) {
+    function getTitle($module, $node)
+    {
         $title = $this->text("the_source_for") . " ";
-        if (empty($node))
-        $title .= $this->text("module") . " $module";
-        else
-        $title .= $this->text("node") . " $module.$node";
+        if (empty($node)) {
+            $title .= $this->text("module") . " $module";
+        } else {
+            $title .= $this->text("node") . " $module.$node";
+        }
         return $title;
     }
 
-    function action_view() {
+    function action_view()
+    {
         // Get used objects
         $sessionmanager = SessionManager::getInstance();
         $page = &$this->getPage();
@@ -74,7 +83,4 @@ class SourceViewer extends Node
 
         $page->addContent($actionpage);
     }
-
 }
-
-?>

@@ -64,7 +64,6 @@ class U2F extends Node
             $stmt->execute([$reg->keyHandle, $reg->publicKey, $reg->certificate, $reg->counter, $record['id']]);
 
             return true;
-
         } catch (\Exception $e) {
             return false;
         }

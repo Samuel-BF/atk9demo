@@ -15,7 +15,7 @@ use function App\Modules\Lesson_utils\moduleSourceUrl;
  */
 class Module extends \Sintattica\Atk\Core\Module
 {
-    static $module = 'Lesson7';
+    public static $module = 'Lesson7';
     
     public function boot()
     {
@@ -30,6 +30,5 @@ class Module extends \Sintattica\Atk\Core\Module
     public function register()
     {
         $this->registerNode("category", Category::class, ["admin", "add", "edit", "delete"]);
-        
     }
 }

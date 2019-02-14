@@ -18,7 +18,7 @@ use function App\Modules\Lesson_utils\nodeSourceUrl;
 class Department extends Node
 {
 
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         parent::__construct($nodeUri, Node::NF_ADD_LINK);
         $this->setTable('lesson2_department');
@@ -29,16 +29,16 @@ class Department extends Node
         $this->add(new Attribute('name', Attribute::AF_SEARCHABLE|Attribute::AF_UNIQUE));
         
         /**
-         * The next line adds the relationship. 
-         * 
-         * The first parameter is the name of the entity we have a 
+         * The next line adds the relationship.
+         *
+         * The first parameter is the name of the entity we have a
          * relationship with. This parameter is smart, it understands
          * words. E.g. we say 'has many employees'. The employee entity
          * is called 'employee', not 'employees', but this is OK. ATK
          * understands what you're trying to do.
-         * 
+         *
          * Also, you'll note that we don't have to tell it what foreign
-         * keys to use for the relationship. ATK discovers that employee 
+         * keys to use for the relationship. ATK discovers that employee
          * has a 'department_id' field so it decides to use that as the
          * foreign key.
          */
@@ -47,6 +47,6 @@ class Department extends Node
 
     public function adminFooter()
     {
-      return nodeSourceUrl("Lesson2.Department");
+        return nodeSourceUrl("Lesson2.Department");
     }
 }

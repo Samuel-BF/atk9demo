@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Modules\Lesson4;
+
 use function App\Modules\Lesson_utils\moduleSourceUrl;
 
 /**
@@ -10,7 +10,7 @@ use function App\Modules\Lesson_utils\moduleSourceUrl;
  */
 class Module extends \Sintattica\Atk\Core\Module
 {
-    static $module = 'Lesson4';
+    public static $module = 'Lesson4';
 
     public function register()
     {

@@ -1,17 +1,17 @@
 <?php
-
 namespace App\Modules\Lesson2;
+
 use function App\Modules\Lesson_utils\moduleSourceUrl;
   
 /**
  * The module definition class.
  *
- * The module file is similar to that of lesson 1, with an extra 
- * 'department' menu item. 
+ * The module file is similar to that of lesson 1, with an extra
+ * 'department' menu item.
  */
 class Module extends \Sintattica\Atk\Core\Module
 {
-    static $module = 'Lesson2';
+    public static $module = 'Lesson2';
 
     public function register()
     {

@@ -6,14 +6,14 @@ use function App\Modules\Lesson_utils\moduleSourceUrl;
 /**
  * The module definition class.
  *
- * This module introduces the many-to-many relations, see node files 
+ * This module introduces the many-to-many relations, see node files
  * for more details
  *
  * The lesson8 covered functionnality that disappeared from Atk.
  */
 class Module extends \Sintattica\Atk\Core\Module
 {
-    static $module = 'Lesson9';
+    public static $module = 'Lesson9';
     
     public function boot()
     {

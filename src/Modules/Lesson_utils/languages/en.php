@@ -10,4 +10,3 @@ return [
     "invalid_file" => "Invalid module or node for source viewer.",
     "sourcecode_of" => "Sourcecode of file",
   ];
-?>

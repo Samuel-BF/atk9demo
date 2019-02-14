@@ -11,4 +11,3 @@ return [
   "tab_default" => "General",
   "tab_employees" => "Employees"
 ];
-?>

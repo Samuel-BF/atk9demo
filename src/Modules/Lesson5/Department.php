@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Modules\Lesson5;
 
 use Sintattica\Atk\Attributes\BoolAttribute;
@@ -20,8 +19,8 @@ use function App\Modules\Lesson_utils\nodeSourceUrl;
 
 class Department extends Node
 {
-
-    function __construct($nodeUri) {
+    public function __construct($nodeUri)
+    {
         parent::__construct($nodeUri, Node::NF_ADD_LINK);
         $this->setTable('lesson5_department');
         $this->setDescriptorTemplate('[name]');
@@ -33,12 +32,15 @@ class Department extends Node
         $this->add(new BoolAttribute('is_hiring'), 'staff');
         
         $this->getAttribute('is_hiring')->addDependency(
-            function ($editform) { $editform->refreshAttribute('employees'); });
+            function ($editform) {
+                $editform->refreshAttribute('employees');
+            }
+        );
     }
 
     public function adminFooter()
     {
-      return nodeSourceUrl('Lesson5.Department');
+        return nodeSourceUrl('Lesson5.Department');
     }
    
     public function name_display($record)
@@ -68,7 +70,7 @@ class Department extends Node
      * The recordActions method can be implemented to add or remove actions
      * for a record.
      */
-    function recordActions($record,&$actions,&$mraactions)
+    public function recordActions($record, &$actions, &$mraactions)
     {
         /**
          * First we determine the currently logged in user.
@@ -80,8 +82,7 @@ class Department extends Node
          * we are currently editing. A user may only edit his own department and
          * the administrator can edit all records
          */
-        if ('administrator'!=$user['name'] && $record['id']!=$user['department'])
-        {
+        if ('administrator'!=$user['name'] && $record['id']!=$user['department']) {
             /**
              * If they do not match, the edit and delete actions are removed from
              * this records' action list.

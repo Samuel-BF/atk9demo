@@ -15,4 +15,3 @@ return [
   "tab_employees" => "Employees",
   "profile_id" => "Profile"
 ];
-?>

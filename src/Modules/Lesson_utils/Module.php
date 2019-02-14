@@ -14,7 +14,8 @@ class Module extends \Sintattica\Atk\Core\Module
     }
 }
 
-function nodeSourceUrl($nodetype) {
+function nodeSourceUrl($nodetype)
+{
     list($module, $node) = explode(".", $nodetype);
     return Tools::href(Tools::dispatch_url("Lesson_utils.sourceviewer", "view", array("module"=>$module, "node"=>$node)), Tools::atktext("view_source", "lesson_utils"), SESSION_NESTED);
 }
@@ -23,5 +24,3 @@ function moduleSourceUrl($module)
 {
     return Tools::dispatch_url("Lesson_utils.sourceviewer", "view", array("module"=>$module));
 }
-
-?>

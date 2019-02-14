@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Modules\Lesson3;
+
 use function App\Modules\Lesson_utils\moduleSourceUrl;
-  
-  
+
 /**
  * The module definition class.
  *
@@ -11,7 +10,7 @@ use function App\Modules\Lesson_utils\moduleSourceUrl;
  */
 class Module extends \Sintattica\Atk\Core\Module
 {
-    static $module = 'Lesson3';
+    public static $module = 'Lesson3';
 
     public function register()
     {

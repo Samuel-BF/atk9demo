@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Modules\Lesson1;
+
 use function App\Modules\Lesson_utils\moduleSourceUrl;
 
 /**
@@ -11,7 +11,7 @@ use function App\Modules\Lesson_utils\moduleSourceUrl;
  */
 class Module extends \Sintattica\Atk\Core\Module
 {
-    static $module = 'Lesson1';
+    public static $module = 'Lesson1';
 
     public function register()
     {
@@ -20,7 +20,7 @@ class Module extends \Sintattica\Atk\Core\Module
 
     /**
      * The boot() method is called by ATK to determine which menuitems
-     * this module has. The method usually contains one or more calls to 
+     * this module has. The method usually contains one or more calls to
      * the addMenuItem() function.
      */
     public function boot()
@@ -31,21 +31,21 @@ class Module extends \Sintattica\Atk\Core\Module
         $this->addMenuItem('lesson1');
 
         /**
-         * The following line adds a menuitem called 'employees' to the 
+         * The following line adds a menuitem called 'employees' to the
          * 'lesson1' menu. The menuitems opens the 'admin' screen for the
          * 'employee' node of the 'lesson1' module.
          */
         $this->addNodeToMenu('employees', 'employees', 'admin', 'lesson1');
         
-        /** 
+        /**
          * The next line is a separator in the lesson 1 menu. If the name is '-'
-         * and the url is blank, the menuitem is considered a separator. It 
+         * and the url is blank, the menuitem is considered a separator. It
          * results in a spacing between the previous and the next menuitem.
          */
         $this->addMenuItem("-", "", "lesson1");
         
         /**
-         * The next line adds a link to a syntax-highlighted view this source 
+         * The next line adds a link to a syntax-highlighted view this source
          * file. It uses the global moduleSourceUrl function (defined in the
          * lesson_utils module) to calculate the url.
          */

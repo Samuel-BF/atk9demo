@@ -7,7 +7,7 @@ use Sintattica\Atk\Relations\ManyToOneRelation;
 
 class EmployeeProject extends Node
 {
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         parent::__construct($nodeUri);
         $this->setTable('lesson9_employeeproject');
@@ -16,5 +16,3 @@ class EmployeeProject extends Node
         $this->add(new ManyToOneRelation('project_id', Attribute::AF_PRIMARY, 'Lesson9.project'));
     }
 }
-
-

@@ -1,4 +1,6 @@
 <?php
+namespace App\Modules\Lesson5;
+
 /**
  * This node is similar to the employee node of lesson 4.
  *
@@ -11,7 +13,7 @@
  * file, you will find the following config entries:
  *
  * 'auth_usernode' => 'Lesson5.employee',
- * 
+ *
  * 'auth_usertable' => 'lesson5_employee',
  * 'auth_userfield' => 'login',
  * 'auth_passwordfield' => 'password',
@@ -27,9 +29,6 @@
  * so only the administrator user (who always has full access) can access
  * those lessons.
  */
-
-namespace App\Modules\Lesson5;
-
 use Sintattica\Atk\Core\Node;
 use Sintattica\Atk\Attributes\Attribute;
 use Sintattica\Atk\Attributes\CurrencyAttribute;
@@ -44,10 +43,9 @@ use Sintattica\Atk\Attributes\TextAttribute;
 use Sintattica\Atk\Relations\ManyToOneRelation;
 use function App\Modules\Lesson_utils\nodeSourceUrl;
 
-
 class Employee extends Node
 {
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         /**
          * Another flag is introduced in this lesson. It's NF_MRA, which is
@@ -77,12 +75,24 @@ class Employee extends Node
          * could be removed, and then a user can only change his password if he
          * enters the original password first.
          */
-        $this->add(new PasswordAttribute('password', Attribute::AF_HIDE_LIST|PasswordAttribute::AF_PASSWORD_NO_VALIDATE, true));
+        $this->add(new PasswordAttribute(
+            'password',
+            Attribute::AF_HIDE_LIST|PasswordAttribute::AF_PASSWORD_NO_VALIDATE,
+            true
+        ));
         
-        $this->add(new DummyAttribute('comment', Attribute::AF_HIDE_LIST, "The demo will send mail to the address below!"));
+        $this->add(new DummyAttribute(
+            'comment',
+            Attribute::AF_HIDE_LIST,
+            "The demo will send mail to the address below!"
+        ));
         $this->add(new EmailAttribute('email'));
         $this->add(new ManyToOneRelation('department', Attribute::AF_SEARCHABLE, 'Lesson5.department'));
-        $this->add(new ManyToOneRelation('manager', Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE, 'Lesson5.employee'));
+        $this->add(new ManyToOneRelation(
+            'manager',
+            Attribute::AF_SEARCHABLE|ManyToOneRelation::AF_RELATION_AUTOCOMPLETE,
+            'Lesson5.employee'
+        ));
         $this->add(new DateAttribute('hiredate'), 'default.contractinfo');
         $this->add(new CurrencyAttribute('salary', Attribute::AF_TOTAL, '€'), 'default.contractinfo');
         $this->add(new TextAttribute("notes", AF_HIDE_LIST));
@@ -95,37 +105,41 @@ class Employee extends Node
          * profile editor. Next to the dropdown for selecting a profile, there
          * are now links for editing the current profile, or adding a new one.
          */
-        $this->add(new ManyToOneRelation("profile_id", ManyToOneRelation::AF_RELATION_AUTOLINK | Attribute::AF_HIDE_ADD, 'Lesson5.profile'));
+        $this->add(new ManyToOneRelation(
+            "profile_id",
+            ManyToOneRelation::AF_RELATION_AUTOLINK | Attribute::AF_HIDE_ADD,
+            'Lesson5.profile'
+        ));
     }
 
     public function adminFooter()
     {
-      return nodeSourceUrl("Lesson5.Employee");
+        return nodeSourceUrl("Lesson5.Employee");
     }
 
     public function rowColor($record)
     {
         $manager_id = $record['manager']['id'];
         if ($manager_id!="") {
-
             $salary = $record['salary'];
 
             $managerNode = $this->getAttribute('manager')->getDestination();
             $managerRecord = $managerNode->select("id=$manager_id")->includes('salary')->getFirstRow();
             $managerSalary = $managerRecord['salary'];
 
-            if ($salary > $managerSalary) return '#ff0000';
+            if ($salary > $managerSalary) {
+                return '#ff0000';
+            }
         }
     }
     
     public function postAdd($record, $mode = 'add')
     {
-        if($record["email"]!='') {
-            
+        if ($record["email"]!='') {
             $num = $this->select()->getRowCount();
             $body = "Hi {$record["name"]},\n\nWelcome to the company and have a good time!\n\n".
                          "We now have {$num} employees\n";
-            mail($record["email"],"Welcome",$body);
+            mail($record["email"], "Welcome", $body);
         }
         return true;
     }
@@ -135,29 +149,22 @@ class Employee extends Node
         $newSalary = $record["salary"];
         $oldSalary = $record["atkorgrec"]["salary"];
 
-        if($record["email"]!='' && $newSalary!=$oldSalary) {
-
+        if ($record["email"]!='' && $newSalary!=$oldSalary) {
             $body = "Hi {$record["name"]},\n\n".
                 "We ".($oldSalary>$newSalary?"lowered":"raised")." your salary with ".abs($newSalary-$oldSalary).".\n".
                 "So your current salary is now: {$record["salary"]}\n";
 
-            mail($record["email"],"Salary changed",$body);
+            mail($record["email"], "Salary changed", $body);
         }
         return true;
     }
 
     public function postDelete($record)
     {
-        if($record["email"]!='') {
-
+        if ($record["email"]!='') {
             $body = "Hi {$record["name"]}\n\nThanks for working at the company!";
-            mail($record["email"],"Goodbye",$body);
+            mail($record["email"], "Goodbye", $body);
         }
         return true;
     }
-    
 }
-
-  
-   
-  

@@ -1,16 +1,14 @@
 <?php
-
 namespace App\Modules\Lesson1;
 
 /**
- * This file contains the definition of a node. It describes our basic 
- * business entity. It contains hints for the userinterface of the admin 
+ * This file contains the definition of a node. It describes our basic
+ * business entity. It contains hints for the userinterface of the admin
  * screens and other feature definitions.
  *
  * Note how very little code (approx. 10 lines, the rest is comments) can
  * generate a complete administration screen for employee records.
  */
- 
 use Sintattica\Atk\Core\Node;
 use Sintattica\Atk\Attributes\Attribute;
 use function App\Modules\Lesson_utils\nodeSourceUrl;
@@ -18,11 +16,11 @@ use function App\Modules\Lesson_utils\nodeSourceUrl;
 /**
  * A node usually represents one table in the database. In this case, we
  * define the node for employees, to generate the CRUD app for managing
- * employees. 
+ * employees.
  */
 class Employee extends Node
 {
-    function __construct($nodeUri)
+    public function __construct($nodeUri)
     {
         /**
          * Some behaviour can be influenced by adding so-called 'node flags' to our
@@ -68,17 +66,17 @@ class Employee extends Node
          */
         $this->setDescriptorTemplate('[name]');
 
-        /** 
-         * Then next line defines an Attribute of the Employee Node, which corresponds to a 
-         * column of lesson1_employee table. This first Attribute is 'id' and comes with a 
-         * flag AF_AUTOKEY, which marks it as a primary key, autoincrementing and hidden 
+        /**
+         * Then next line defines an Attribute of the Employee Node, which corresponds to a
+         * column of lesson1_employee table. This first Attribute is 'id' and comes with a
+         * flag AF_AUTOKEY, which marks it as a primary key, autoincrementing and hidden
          * field.
          */
         $this->add(new Attribute('id', Attribute::AF_AUTOKEY));
         
         /**
-         * With the next line, we add the name Attribute, and add a 
-         * flag to it, to make this field searchable. In the app, you'll see a search box 
+         * With the next line, we add the name Attribute, and add a
+         * flag to it, to make this field searchable. In the app, you'll see a search box
          * on top of the 'name' column. This flag is what causes that.
          * We also add the AF_UNIQUE flag to make the app force the user to enter unique
          * employees only. Note how we can concatenate multiple flags (they are bitwise).
@@ -86,7 +84,7 @@ class Employee extends Node
         $this->add(new Attribute('name', Attribute::AF_SEARCHABLE|Attribute::AF_UNIQUE));
 
         /**
-         * Here's another example of adding flags to attributes; we're telling ATK that the 
+         * Here's another example of adding flags to attributes; we're telling ATK that the
          * salary field should be totalled.
          */
         $this->add(new Attribute('salary', Attribute::AF_TOTAL));
@@ -106,4 +104,3 @@ class Employee extends Node
         return nodeSourceUrl("Lesson1.Employee");
     }
 }
-
