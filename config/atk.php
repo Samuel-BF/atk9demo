@@ -26,7 +26,6 @@ return [
     'language' => 'en',
 
     'modules' => [
-        App\Modules\Auth\Module::class,
         App\Modules\Lesson_utils\Module::class,
         App\Modules\Lesson1\Module::class,
         App\Modules\Lesson2\Module::class,
