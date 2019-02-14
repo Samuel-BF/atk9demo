@@ -1,6 +1,6 @@
 #
 # DEMO INSTALLATION FOR MYSQL DATABASES
-# Please read doc/INSTALL before you start
+# Please read README.md before you start
 #
 
 #
@@ -507,6 +507,49 @@ CREATE TABLE lesson9_employeeproject
   project_id int(11) NOT NULL,
   PRIMARY KEY  (employee_id, project_id)
 ) ;
+# --------------------------------------------------------
 
+#
+# Table structure for table `lesson10_department`
+#
+
+CREATE TABLE lesson10_department
+(
+  id int(11) NOT NULL auto_increment,
+  name varchar(100) NOT NULL,
+  PRIMARY KEY  (id)
+) ;
+
+#
+# Demo data for table `lesson10_department`
+#
+
+INSERT INTO lesson10_department (id, name) VALUES (1, 'Sales');
+INSERT INTO lesson10_department (id, name) VALUES (2, 'Support');
+# --------------------------------------------------------
+
+#
+# Table structure for table `lesson10_employee`
+#
+
+CREATE TABLE lesson10_employee
+(
+  id int(11) NOT NULL auto_increment,
+  name varchar(50) NOT NULL,
+  department int(11) default NULL,
+  hiredate date default NULL,
+  notes text,
+  salary decimal(10,2) default NULL,
+  manager int(11) default NULL,
+  PRIMARY KEY  (id)
+) ;
+
+#
+# Demo data for table `lesson10_employee`
+#
+
+INSERT INTO lesson10_employee (id, name, department, hiredate, notes, salary, manager) VALUES (1, 'Jack The Manager', 1, '2004-05-03', '', '1000.00', NULL);
+INSERT INTO lesson10_employee (id, name, department, hiredate, notes, salary, manager) VALUES (2, 'Joe The Employee', 1, '2004-05-03', '', '500.00', 1);
+INSERT INTO lesson10_employee (id, name, department, hiredate, notes, salary, manager) VALUES (3, 'Jill The Rich Employee', 1, '2004-05-03', '', '2000.00', 1);
 # --------------------------------------------------------
 

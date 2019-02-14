@@ -35,6 +35,7 @@ return [
         App\Modules\Lesson5\Module::class,
         App\Modules\Lesson7\Module::class,
         App\Modules\Lesson9\Module::class,
+        App\Modules\Lesson10\Module::class,
     ],
 
     'language_basedir' => $_baseDir.'languages/',

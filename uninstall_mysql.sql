@@ -21,3 +21,5 @@ DROP TABLE lesson8_employee;
 DROP TABLE lesson9_employee;
 DROP TABLE lesson9_project;
 DROP TABLE lesson9_employeeproject;
+DROP TABLE lesson10_employee;
+DROP TABLE lesson10_department;

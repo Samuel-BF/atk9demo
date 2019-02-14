@@ -42,3 +42,7 @@ DROP TABLE lesson9_project;
 DROP TABLE lesson9_employeeproject;
 DROP SEQUENCE lesson9_employee;
 DROP SEQUENCE lesson9_project;
+DROP TABLE lesson10_employee;
+DROP TABLE lesson10_department;
+DROP SEQUENCE seq_lesson10_employee;
+DROP SEQUENCE seq_lesson10_department;

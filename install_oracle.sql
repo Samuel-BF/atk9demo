@@ -1,6 +1,6 @@
 --
 -- DEMO INSTALLATION FOR ORACLE DATABASES
--- Please read doc/INSTALL before you start
+-- Please read README.md before you start
 --
 
 --
@@ -556,3 +556,51 @@ CREATE TABLE lesson9_employeeproject
   CONSTRAINT pk_lesson9_empprj PRIMARY KEY  (employee_id, project_id)
 );
 
+
+--
+-- Table structure for table `lesson10_department`
+--
+
+CREATE TABLE lesson10_department
+(
+  id NUMBER NOT NULL,
+  name VARCHAR2(100) NOT NULL,
+  CONSTRAINT pk_lesson3_dept PRIMARY KEY (id)
+);
+
+--
+-- Demo data for table `lesson10_department`
+--
+
+INSERT INTO lesson10_department (id, name) VALUES (1, 'Sales');
+INSERT INTO lesson10_department (id, name) VALUES (2, 'Support');
+
+--
+-- Table structure for table `lesson10_employee`
+--
+
+CREATE TABLE lesson10_employee
+(
+  id NUMBER NOT NULL,
+  name VARCHAR2(50) NOT NULL,
+  department NUMBER,
+  hiredate DATE,
+  notes CLOB,
+  salary NUMBER(10,2),
+  manager NUMBER,
+  CONSTRAINT pk_lesson10_emp PRIMARY KEY (id),
+  CONSTRAINT fk_lesson10_empman FOREIGN KEY(manager) REFERENCES lesson10_employee(id) ON DELETE SET NULL,
+  CONSTRAINT fk_lesson10_empdept FOREIGN KEY(department) REFERENCES lesson10_department(id) ON DELETE SET NULL
+);
+
+--
+-- Demo data for table `lesson3_employee`
+--
+
+INSERT INTO lesson10_employee (id, name, department, hiredate, notes, salary, manager) VALUES (1, 'Jack The Manager', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 1000.00, NULL);
+INSERT INTO lesson10_employee (id, name, department, hiredate, notes, salary, manager) VALUES (2, 'Joe The Employee', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 500.00, 1);
+INSERT INTO lesson10_employee (id, name, department, hiredate, notes, salary, manager) VALUES (3, 'Jill The Rich Employee', 1, TO_DATE('2004-05-03', 'YYYY-MM-DD'), '', 2000.00, 1);
+
+-- ATK will insert records based on a sequence.
+CREATE SEQUENCE seq_lesson10_employee START WITH 4;
+CREATE SEQUENCE seq_lesson10_department START WITH 3;
