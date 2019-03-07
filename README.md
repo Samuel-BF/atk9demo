@@ -2,6 +2,8 @@
 
 Atk9Demo is a lesson-based demo application for [the Atk Framework](https://github.com/Sintattica/atk), illustrating the basic concepts of the ATK Framework through a series of lessons. It is an updated version of [atkdemo](https://github.com/atkphpframework/atkdemo/), written for ATK Framework v6.5.0.
 
+WARNING : ATK framework suffer from several security flaws and shouldn't be used for the moment.
+
 If you want to start a new atk project, start from [the atk skeleton](https://github.com/Sintattica/atk-skeleton).
 
 Atk9Demo currently uses ATK Framework v9.
