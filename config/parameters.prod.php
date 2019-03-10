@@ -17,7 +17,7 @@ return [
                 'user' => '********',
                 'password' => '********',
                 'charset' => 'utf8',
-                'driver' => 'MySqli',
+                'driver' => 'MySqli', // Or PgSql
             ],
         ],
 
